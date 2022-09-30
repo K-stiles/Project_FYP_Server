@@ -2,4 +2,6 @@
 .docx
 .env
 
+/node_modules
+
 BACKEND FLOW.docx
