@@ -1,32 +1,44 @@
 import { model, Schema } from "mongoose";
 
-const userSchema = new Schema({
-   firstName: String,
-   lastName: String,
-   email: {
+const userSchema = new Schema(
+  {
+    firstName: {
+      type: String,
+      required: true,
+    },
+    lastName: {
+      type: String,
+      required: true,
+    },
+    email: {
       type: String,
       required: true,
       lowercase: true,
       unique: true,
-   },
-   password: {
+    },
+    password: {
       type: String,
       required: true,
-   },
+    },
 
-   phone: String,
-   createdAt: String,
-   street: String,
-   city: String,
-   zip: String,
-   userReservations: [
-      {
-         type: Schema.Types.ObjectId,
-         ref: "reservations",
-      },
-   ],
+    phone: {
+      type: String,
+      required: true,
+    },
+    street: String,
+    city: String,
+    zip: String,
+    userReservations: [],
 
-   img: String,
-});
+    profile: String,
+    role: {
+      type: Number,
+      default: 2000,
+      enum: [3000, 2500, 2000],
+    },
+    refreshToken: [String],
+  },
+  { timestamps: true }
+);
 
 export default model("User", userSchema);
